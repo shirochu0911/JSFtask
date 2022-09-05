@@ -12,6 +12,8 @@
 			好きな言葉を入力してください。<br />
 			好きな言葉：<h:inputText value="#{main.inputData}" />
 		<br />
+		<h:outputText value="#{main.errorMessage}"></h:outputText>
+		<br />
 		<h:commandButton value="送信" action="#{main.retry()}" />
 	</h:form>
 
