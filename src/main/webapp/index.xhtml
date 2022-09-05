@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>データ入出力</title>
+</h:head>
+<body>
+	<h:form>
+			好きな言葉を入力してください。<br />
+			好きな言葉：<h:inputText value="#{main.inputData}" />
+		<br />
+		<h:commandButton value="送信" action="#{main.retry()}" />
+	</h:form>
+
+	<h1>ユーザー一覧</h1>
+	<h:dataTable value="#{main.dataList}" var="dataList" border="1">
+		<h:column>
+			<f:facet name="header">データ</f:facet>
+			#{dataList.data}
+		</h:column>
+		<h:column>
+			<f:facet name="header">作成日時</f:facet>
+			#{dataList.createDate}
+		</h:column>
+	</h:dataTable>
+</body>
+</html>
