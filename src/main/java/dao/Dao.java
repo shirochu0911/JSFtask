@@ -5,41 +5,68 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import bean.Data;
 
-
 public class Dao {
 
-	private final String URL ="jdbc:postgresql://localhost:5432/postgres";
+	private final String URL = "jdbc:postgresql://localhost:5432/postgres";
 	private final String USER = "testuser";
 	private final String PASSWORD = "P@ssw0rd";
-	//入力値登録
+
+	// 入力値登録
 	public void insertData(String data) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
-		
+
 		con = DriverManager.getConnection(URL, USER, PASSWORD);
-		String sql = "Insert into datatable (data) values ('"+data+"');";
-		
+		String sql = "Insert into datatable (data) values ('" + data + "');";
+
 		ps = con.prepareStatement(sql);
 		ps.executeUpdate();
-		
-			try {
-				if (ps != null) {
-					ps.close();
-				}
-				if (con != null) {
-					con.close();
-				}
+
+		try {
+			if (ps != null) {
+				ps.close();
 			}
-			catch (SQLException se) {
-				se.printStackTrace();
+			if (con != null) {
+				con.close();
 			}
-			
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+
 	}
-	
+
+	// 入力値更新
+	public void updateData(int id, String data) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		Long datetime = System.currentTimeMillis();
+		Timestamp timestamp = new Timestamp(datetime);
+
+		con = DriverManager.getConnection(URL, USER, PASSWORD);
+		String sql = "UPDATE datatable SET data='" + data + "',updateDate='" + timestamp + "' WHERE id = " + id + ";";
+
+		ps = con.prepareStatement(sql);
+		ps.executeUpdate();
+
+		try {
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+
+	}
+
 	// 全件取得
 	public ArrayList<Data> allAcquisition() {
 
@@ -48,11 +75,9 @@ public class Dao {
 		ResultSet rs = null;
 
 		ArrayList<Data> dataList = new ArrayList<>();
-		
 
 		try {
-			Class.forName("org.postgresql.Driver");
-			
+
 			con = DriverManager.getConnection(URL, USER, PASSWORD);
 			String sql = "select * from datatable";
 			ps = con.prepareStatement(sql);
@@ -60,18 +85,17 @@ public class Dao {
 
 			while (rs.next()) {
 				Data data = new Data();
-				
+
 				data.setId(rs.getInt("id"));
 				data.setData(rs.getString("data"));
 				data.setCreateDate(rs.getTimestamp("createDate"));
+				data.setUpdateDate(rs.getTimestamp("updateDate"));
 				dataList.add(data);
 
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			try {
 				if (rs != null) {
 					rs.close();
@@ -82,8 +106,7 @@ public class Dao {
 				if (con != null) {
 					con.close();
 				}
-			}
-			catch (SQLException se) {
+			} catch (SQLException se) {
 				se.printStackTrace();
 			}
 		}

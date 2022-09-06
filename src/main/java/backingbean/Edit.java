@@ -3,7 +3,6 @@ package backingbean;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,7 +13,7 @@ import service.validaton.ValidatorInterface;
 
 @Named
 @RequestScoped
-public class Main {
+public class Edit {
 
 	@Inject
 	DaoInterfaceService daoInterfaceService;
@@ -23,23 +22,11 @@ public class Main {
 	ValidatorInterface validatorInterface;
 
 	private List<Data> dataList;
+
 	private Data data;
 	private String inputData;
 
 	private String errorMessage;
-
-	@PostConstruct
-	public void init() {
-		setDataList(daoInterfaceService.allAcquisition());
-	}
-
-	public List<Data> getDataList() {
-		return dataList;
-	}
-
-	public void setDataList(List<Data> dataList) {
-		this.dataList = dataList;
-	}
 
 	public Data getData() {
 		return data;
@@ -53,10 +40,12 @@ public class Main {
 
 	public String getInputData() {
 		return inputData;
+
 	}
 
 	public void setInputData(String inputData) {
 		this.inputData = inputData;
+
 	}
 
 	public String getErrorMessage() {
@@ -69,25 +58,28 @@ public class Main {
 
 	}
 
+	public List<Data> getDataList() {
+		return dataList;
+
+	}
+
+	public void setDataList(List<Data> dataList) {
+		this.dataList = dataList;
+
+	}
+
 	public String sendToIndexScreen() throws SQLException {
 
 		setErrorMessage(validatorInterface.dataLengthCheck(getInputData()));
 		setDataList(daoInterfaceService.allAcquisition());
 
 		if (getErrorMessage() != null) {
-			return "/index.html";
+			return "/edit.xhtml";
 		}
 
-		daoInterfaceService.insert(getInputData());
+		daoInterfaceService.update(getData().getId(), getInputData());
 
 		return "/index.xhtml";
-	}
-
-	public String sendToEditScreen() {
-		setData(getData());
-		System.out.println(getInputData());
-		System.out.println(getData());
-		return "/edit.xhtml";
 	}
 
 }

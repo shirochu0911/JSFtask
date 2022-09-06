@@ -6,16 +6,16 @@ import javax.enterprise.context.Dependent;
 public class Validator implements ValidatorInterface {
 
 	@Override
-	public boolean dataLengthCheck(String data) {
+	public String dataLengthCheck(String data) {
 		// TODO Auto-generated method stub
-		boolean flag = false;
 		int validatorDataLength = 8;
+		String errorMessage = null;
 
 		if (data.length() > validatorDataLength) {
-			flag = true;
+			errorMessage = "想定している文字数を超えています";
 		}
 
-		return flag;
+		return errorMessage;
 	}
 
 }

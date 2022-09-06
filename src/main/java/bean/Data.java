@@ -7,6 +7,7 @@ public class Data {
 	private int id;
 	private String data;
 	private Timestamp createDate;
+	private Timestamp updateDate;
 
 	public int getId() {
 		return id;
@@ -30,5 +31,15 @@ public class Data {
 
 	public void setCreateDate(Timestamp createDate) {
 		this.createDate = createDate;
+	}
+
+	public Timestamp getUpdateDate() {
+		return updateDate;
+		
+	}
+
+	public void setUpdateDate(Timestamp updateDate) {
+		this.updateDate = updateDate;
+		
 	}
 }

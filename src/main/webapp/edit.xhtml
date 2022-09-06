@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>編集画面</h:head>
+<body>
+	<h:dataTable value="#{main.data}" var="data" border="1">
+		<h:column>
+			<f:facet name="header">データ</f:facet>
+			#{data.data}
+		</h:column>
+		<h:column>
+			<f:facet name="header">作成日時</f:facet>
+			#{data.createDate}
+		</h:column>
+		<h:inputHidden value="data" />
+	</h:dataTable>
+
+	<h:form>
+			更新する言葉を入力してください。<br />
+			好きな言葉：<h:inputText value="#{edit.inputData}" />
+		<br />
+		<h:outputText value="#{edit.errorMessage}"></h:outputText>
+		<br />
+		<h:commandButton value="送信" action="#{edit.sendToIndexScreen()}" />
+	</h:form>
+
+</body>
+</html>

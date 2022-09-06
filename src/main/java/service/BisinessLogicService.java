@@ -14,9 +14,15 @@ public class BisinessLogicService implements DaoInterfaceService {
 	Dao dao = new Dao();
 
 	@Override
-	public void Insert(String data) throws SQLException {
+	public void insert(String data) throws SQLException {
 		// TODO Auto-generated method stub
 		dao.insertData(data);
+	}
+
+	@Override
+	public void update(int id, String data) throws SQLException {
+		// TODO Auto-generated method stub
+		dao.updateData(id, data);
 	}
 
 	@Override

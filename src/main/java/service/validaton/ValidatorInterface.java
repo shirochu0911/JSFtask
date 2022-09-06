@@ -2,5 +2,5 @@ package service.validaton;
 
 public interface ValidatorInterface {
 
-	public boolean dataLengthCheck(String data);
+	public String dataLengthCheck(String data);
 }
