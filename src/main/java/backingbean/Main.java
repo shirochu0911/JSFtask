@@ -1,7 +1,9 @@
 package backingbean;
 
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -15,7 +17,7 @@ import service.validaton.ValidatorInterface;
 
 @Named
 @RequestScoped
-public class Main {
+public class Main implements Serializable {
 
 	@Inject
 	DaoInterfaceService daoInterfaceService;
@@ -26,12 +28,22 @@ public class Main {
 	private List<Data> dataList;
 	private Data data;
 	private String inputData;
+	private int dataId;
 
 	private String errorMessage;
 
 	@PostConstruct
 	public void init() {
+		System.out.println("状態19");
 		setDataList(daoInterfaceService.allAcquisition());
+	}
+
+	public int getDataId() {
+		return dataId;
+	}
+
+	public void setDataId(int dataId) {
+		this.dataId = dataId;
 	}
 
 	public List<Data> getDataList() {
@@ -76,7 +88,7 @@ public class Main {
 		setDataList(daoInterfaceService.allAcquisition());
 
 		if (getErrorMessage() != null) {
-			return "/index.html";
+			return "/index.xhtml";
 		}
 
 		daoInterfaceService.insert(getInputData());
@@ -85,16 +97,12 @@ public class Main {
 	}
 
 	public String sendToEditScreen() {
-		setData((Data)FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("selectData"));
-		System.out.println("最新状態");
-		System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("test"));
-//		setData(Transportation.dataTransportation("selectData"));
-		System.out.println(getData());
+		Map<String, Object> map = FacesContext.getCurrentInstance().getExternalContext().getRequestMap();
+		setData((Data) map.get("data"));
 		return "/edit.xhtml";
 	}
-	
-	public String test() {
-		System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("test"));
+
+	public String sendToIndexScreenDeleteAction() {
 		return "/index.xhtml";
 	}
 

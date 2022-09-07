@@ -1,5 +1,6 @@
 package service;
 
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import bean.Data;
 import dao.Dao;
 
 @Dependent
-public class BisinessLogicService implements DaoInterfaceService {
+public class BisinessLogicService implements DaoInterfaceService,Serializable{
 
 	Dao dao = new Dao();
 

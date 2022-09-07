@@ -1,9 +1,12 @@
 package backingbean;
 
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -13,7 +16,7 @@ import service.validaton.ValidatorInterface;
 
 @Named
 @RequestScoped
-public class Edit {
+public class Edit implements Serializable {
 
 	@Inject
 	DaoInterfaceService daoInterfaceService;
@@ -25,8 +28,14 @@ public class Edit {
 
 	private Data data;
 	private String inputData;
+	private int inputDataId;
 
 	private String errorMessage;
+	
+	@PostConstruct
+	public void init() {
+		setDataList(daoInterfaceService.allAcquisition());
+	}
 
 	public Data getData() {
 		return data;
@@ -68,18 +77,30 @@ public class Edit {
 
 	}
 
+	public int getInputDataId() {
+		return inputDataId;
+
+	}
+
+	public void setInputDataId(int inputDataId) {
+		this.inputDataId = inputDataId;
+
+	}
+
 	public String sendToIndexScreen() throws SQLException {
 
+		setInputDataId(Integer.parseInt(
+				FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("selectDataId")));
 		setErrorMessage(validatorInterface.dataLengthCheck(getInputData()));
-		setDataList(daoInterfaceService.allAcquisition());
 
 		if (getErrorMessage() != null) {
 			return "/edit.xhtml";
 		}
 
-		daoInterfaceService.update(getData().getId(), getInputData());
+		daoInterfaceService.update(getInputDataId(), getInputData());
+		setDataList(daoInterfaceService.allAcquisition());
 
-		return "/index.xhtml";
+		return "/index.xhtml?faces-redirect=true";
 	}
 
 }

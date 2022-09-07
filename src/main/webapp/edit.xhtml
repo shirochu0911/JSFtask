@@ -15,15 +15,19 @@
 			<f:facet name="header">作成日時</f:facet>
 			#{data.createDate}
 		</h:column>
-		<h:inputHidden value="data" />
+		<h:column>
+			<f:facet name="header">更新日時</f:facet>
+			#{data.updateDate}
+		</h:column>
 	</h:dataTable>
 
-	<h:form>
+	<h:form id = "editForm">
 			更新する言葉を入力してください。<br />
 			好きな言葉：<h:inputText value="#{edit.inputData}" />
 		<br />
 		<h:outputText value="#{edit.errorMessage}"></h:outputText>
 		<br />
+		<input type="hidden" name="selectDataId" value="#{main.data.id}"  />
 		<h:commandButton value="送信" action="#{edit.sendToIndexScreen()}" />
 	</h:form>
 

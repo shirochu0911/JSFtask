@@ -8,7 +8,7 @@
 	<title>データ入出力</title>
 </h:head>
 <body>
-	<h:form>
+	<h:form id="inputForm">
 			好きな言葉を入力してください。<br />
 			好きな言葉：<h:inputText value="#{main.inputData}" />
 		<br />
@@ -17,7 +17,7 @@
 		<h:commandButton value="送信" action="#{main.sendToIndexScreen()}" />
 	</h:form>
 
-	<h1>ユーザー一覧</h1>
+	<h1>登録データ一覧</h1>
 	<h:dataTable value="#{main.dataList}" var="data" border="1">
 		<h:column>
 			<f:facet name="header">データ</f:facet>
@@ -32,17 +32,20 @@
 			#{data.updateDate}
 		</h:column>
 		<h:column>
-			<h:form>
-				<input type="hidden" name="selectData" value="#{data}" />
-				<input type="hidden" name="test" value="tanaka" />
+			<f:facet name="header">編集</f:facet>
+			<h:form id="editForm">
 				<h:commandButton value="編集" action="#{main.sendToEditScreen()}" />
 			</h:form>
 		</h:column>
+		<h:column>
+		<f:facet name="header">削除</f:facet>
+		<input type="checkbox" form="deleteForm"></input>
+		</h:column>
 	</h:dataTable>
-
-	<h:form>
-		<input type="hidden" name="test" value="tanaka" />
-		<h:commandButton value="ボタン" action="#{main.test()}" />
+	
+	<h:form id="deleteForm">
+		<h:commandButton value="削除" action="#{main.sendToEditScreen()}" />
 	</h:form>
+
 </body>
 </html>
