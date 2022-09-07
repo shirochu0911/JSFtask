@@ -18,25 +18,31 @@
 	</h:form>
 
 	<h1>ユーザー一覧</h1>
-	<h:form>
-		<h:dataTable value="#{main.dataList}" var="data" border="1">
-			<h:column>
-				<f:facet name="header">データ</f:facet>
+	<h:dataTable value="#{main.dataList}" var="data" border="1">
+		<h:column>
+			<f:facet name="header">データ</f:facet>
 			#{data.data}
 		</h:column>
-			<h:column>
-				<f:facet name="header">作成日時</f:facet>
+		<h:column>
+			<f:facet name="header">作成日時</f:facet>
 			#{data.createDate}
 		</h:column>
-			<h:column>
-				<f:facet name="header">更新日時</f:facet>
+		<h:column>
+			<f:facet name="header">更新日時</f:facet>
 			#{data.updateDate}
 		</h:column>
-			<h:column>
-				<input type="hidden" id="#{main.inputData}" value="#{data.data}" />
+		<h:column>
+			<h:form>
+				<input type="hidden" name="selectData" value="#{data}" />
+				<input type="hidden" name="test" value="tanaka" />
 				<h:commandButton value="編集" action="#{main.sendToEditScreen()}" />
-			</h:column>
-		</h:dataTable>
+			</h:form>
+		</h:column>
+	</h:dataTable>
+
+	<h:form>
+		<input type="hidden" name="test" value="tanaka" />
+		<h:commandButton value="ボタン" action="#{main.test()}" />
 	</h:form>
 </body>
 </html>

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -84,10 +85,17 @@ public class Main {
 	}
 
 	public String sendToEditScreen() {
-		setData(getData());
-		System.out.println(getInputData());
+		setData((Data)FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("selectData"));
+		System.out.println("最新状態");
+		System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("test"));
+//		setData(Transportation.dataTransportation("selectData"));
 		System.out.println(getData());
 		return "/edit.xhtml";
+	}
+	
+	public String test() {
+		System.out.println(FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("test"));
+		return "/index.xhtml";
 	}
 
 }
