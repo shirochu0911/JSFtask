@@ -10,7 +10,7 @@ import bean.Data;
 import dao.Dao;
 
 @Dependent
-public class BisinessLogicService implements DaoInterfaceService,Serializable{
+public class BisinessLogicService implements DaoInterfaceService, Serializable {
 
 	Dao dao = new Dao();
 
@@ -30,6 +30,12 @@ public class BisinessLogicService implements DaoInterfaceService,Serializable{
 	public List<Data> allAcquisition() {
 		// TODO Auto-generated method stub
 		return dao.allAcquisition();
+	}
+
+	@Override
+	public void delete(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		dao.deleteData(id);
 	}
 
 }

@@ -29,12 +29,13 @@ public class Main implements Serializable {
 	private Data data;
 	private String inputData;
 	private int dataId;
+	private String deleteIdList;
 
 	private String errorMessage;
 
 	@PostConstruct
 	public void init() {
-		System.out.println("状態19");
+		System.out.println("状態21");
 		setDataList(daoInterfaceService.allAcquisition());
 	}
 
@@ -82,6 +83,16 @@ public class Main implements Serializable {
 
 	}
 
+	public String getDeleteIdList() {
+		return deleteIdList;
+
+	}
+
+	public void setDeleteIdList(String deleteIdList) {
+		this.deleteIdList = deleteIdList;
+
+	}
+
 	public String sendToIndexScreen() throws SQLException {
 
 		setErrorMessage(validatorInterface.dataLengthCheck(getInputData()));
@@ -92,6 +103,16 @@ public class Main implements Serializable {
 		}
 
 		daoInterfaceService.insert(getInputData());
+
+		return "/index.xhtml";
+	}
+
+	public String sendToIndexScreenActionDelete() throws SQLException {
+		Map<String, Object> map = FacesContext.getCurrentInstance().getExternalContext().getRequestMap();
+		setData((Data) map.get("data"));
+
+		daoInterfaceService.delete(getData().getId());
+		setDataList(daoInterfaceService.allAcquisition());
 
 		return "/index.xhtml";
 	}

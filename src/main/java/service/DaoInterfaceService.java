@@ -9,9 +9,12 @@ public interface DaoInterfaceService {
 
 	// データを追加する
 	public void insert(String data) throws SQLException;
-	
-	//データを編集する
-	public void update(int id,String data) throws SQLException;
+
+	// データを編集する
+	public void update(int id, String data) throws SQLException;
+
+	//データを削除する
+	public void delete(int id) throws SQLException;
 
 	// 全件数取得する
 	public List<Data> allAcquisition();

@@ -38,14 +38,14 @@
 			</h:form>
 		</h:column>
 		<h:column>
-		<f:facet name="header">削除</f:facet>
-		<input type="checkbox" form="deleteForm"></input>
+			<h:form id="deleteForm">
+				<f:facet name="header">削除</f:facet>
+				<h:commandButton value="削除" action="#{main.sendToIndexScreenActionDelete()}" />
+			</h:form>
 		</h:column>
 	</h:dataTable>
-	
-	<h:form id="deleteForm">
-		<h:commandButton value="削除" action="#{main.sendToEditScreen()}" />
-	</h:form>
+
+
 
 </body>
 </html>

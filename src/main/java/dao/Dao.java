@@ -40,6 +40,30 @@ public class Dao {
 
 	}
 
+	// 入力値削除
+	public void deleteData(int deleteId) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		con = DriverManager.getConnection(URL, USER, PASSWORD);
+		String sql = "delete from datatable where id = " + deleteId + ";";
+
+		ps = con.prepareStatement(sql);
+		ps.executeUpdate();
+
+		try {
+			if (ps != null) {
+				ps.close();
+			}
+			if (con != null) {
+				con.close();
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+
+	}
+
 	// 入力値更新
 	public void updateData(int id, String data) throws SQLException {
 		Connection con = null;
