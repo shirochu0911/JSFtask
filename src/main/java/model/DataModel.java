@@ -8,6 +8,7 @@ import org.primefaces.model.SelectableDataModel;
 
 import bean.Data;
 
+//primeFaceのテーブルを使うときは以下を継承、実装する必要がある
 public class DataModel extends ListDataModel<Data> implements SelectableDataModel<Data> {
 
 	public DataModel(List<Data> data) {
