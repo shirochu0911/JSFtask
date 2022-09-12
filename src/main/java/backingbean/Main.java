@@ -35,7 +35,7 @@ public class Main implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		System.out.println("状態21");
+		System.out.println("状態30");
 		setDataList(daoInterfaceService.allAcquisition());
 	}
 
@@ -96,13 +96,13 @@ public class Main implements Serializable {
 	public String sendToIndexScreen() throws SQLException {
 
 		setErrorMessage(validatorInterface.dataLengthCheck(getInputData()));
-		setDataList(daoInterfaceService.allAcquisition());
 
 		if (getErrorMessage() != null) {
 			return "/index.xhtml";
 		}
 
 		daoInterfaceService.insert(getInputData());
+		setDataList(daoInterfaceService.allAcquisition());
 
 		return "/index.xhtml";
 	}
@@ -123,8 +123,9 @@ public class Main implements Serializable {
 		return "/edit.xhtml";
 	}
 
-	public String sendToIndexScreenDeleteAction() {
-		return "/index.xhtml";
+	public String sendToIndexPrimeFace() {
+		setDataList(daoInterfaceService.allAcquisition());
+		return "/indexPrimeFace.xhtml";
 	}
 
 }

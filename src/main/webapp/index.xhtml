@@ -40,12 +40,16 @@
 		<h:column>
 			<h:form id="deleteForm">
 				<f:facet name="header">削除</f:facet>
-				<h:commandButton value="削除" action="#{main.sendToIndexScreenActionDelete()}" />
+				<h:commandButton value="削除"
+					action="#{main.sendToIndexScreenActionDelete()}" />
 			</h:form>
 		</h:column>
 	</h:dataTable>
 
-
-
+	<h:form>
+		<h:commandButton value="primeFaceへ"
+			action="#{main.sendToIndexPrimeFace()}" />
+	</h:form>
 </body>
+
 </html>

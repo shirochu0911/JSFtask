@@ -10,5 +10,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/pleiades-2021-12-java-win-64bit-jre_20220106/pleiades/workspace/JSFtask/src/main/webapp/WEB-INF/lib/postgresql-42.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/pleiades-2021-12-java-win-64bit-jre_20220106/pleiades/workspace/JSFtask/src/main/webapp/WEB-INF/lib/primefaces-10.0.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

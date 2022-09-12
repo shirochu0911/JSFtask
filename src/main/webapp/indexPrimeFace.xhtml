@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<h:form id="dtSelectableFrm">
+
+		<!-- valueにモデルを指定し、selectionで選択されたリストを指定します -->
+		<p:dataTable id="dtSelectable" var="data"
+			value="#{indexPrimeFace.dataModel}" sortMode="multiple"
+			paginator="true" rows="5" rowsPerPageTemplate="5,10,15"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} 
+          {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			pageLinks="5" selection="#{indexPrimeFace.selectedDataList}">
+
+			<!-- チェックボックスを定義するのではなく、モード指定するのみ-->
+			<!-- なお single と指定すればラジオボタンになります -->
+			<p:column selectionMode="multiple" />
+
+			<p:column id="colId" headerText="ID">
+				<p:outputLabel value="#{data.id}" />
+			</p:column>
+
+			<p:column id="colData" headerText="データ">
+				<p:outputLabel value="#{data.data}" />
+			</p:column>
+
+			<p:column id="colCreateDate" headerText="作成日時">
+				<p:outputLabel value="#{data.createDate}" />
+			</p:column>
+
+			<p:column id="colUpdateDate" headerText="更新日時">
+				<p:outputLabel value="#{data.updateDate}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>
