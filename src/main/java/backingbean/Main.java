@@ -35,7 +35,7 @@ public class Main implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		System.out.println("状態31");
+		System.out.println("状態33");
 		setDataList(daoInterfaceService.allAcquisition());
 	}
 

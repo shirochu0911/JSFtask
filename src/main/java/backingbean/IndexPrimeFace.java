@@ -61,4 +61,8 @@ public class IndexPrimeFace implements Serializable {
 		return "/index.xhtml";
 	}
 
+	public String sendToEditScreen() {
+		return "/edit.xhtml";
+	}
+
 }
