@@ -35,6 +35,14 @@
 				<p:outputLabel value="#{data.updateDate}" />
 			</p:column>
 		</p:dataTable>
+
+		<h:commandButton value="選択したデータを削除"
+			action="#{indexPrimeFace.sendToIndexScreenActionBulkDelete()}" />
+	</h:form>
+
+	<h:form>
+		<h:commandButton value="indexに戻る"
+			action="#{indexPrimeFace.sendToIndexScreen()}" />
 	</h:form>
 </h:body>
 </html>

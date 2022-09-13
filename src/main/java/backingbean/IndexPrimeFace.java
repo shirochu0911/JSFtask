@@ -1,6 +1,7 @@
 package backingbean;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -44,6 +45,20 @@ public class IndexPrimeFace implements Serializable {
 
 	public void setSelectedDataList(List<Data> selectedDataList) {
 		this.selectedDataList = selectedDataList;
+	}
+
+	public String sendToIndexScreenActionBulkDelete() throws SQLException {
+
+		for (Data data : selectedDataList) {
+			daoInterfaceService.delete(data.getId());
+		}
+
+		dataModel = new model.DataModel(daoInterfaceService.allAcquisition());
+		return "/indexPrimeFace.xhtml";
+	}
+
+	public String sendToIndexScreen() {
+		return "/index.xhtml";
 	}
 
 }
