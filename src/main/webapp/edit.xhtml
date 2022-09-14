@@ -6,6 +6,8 @@
 
 <h:head>編集画面</h:head>
 <body>
+
+	<h:outputText value="#{login.userName}"></h:outputText>
 	<h:dataTable value="#{main.data}" var="data" border="1">
 		<h:column>
 			<f:facet name="header">データ</f:facet>
@@ -21,13 +23,13 @@
 		</h:column>
 	</h:dataTable>
 
-	<h:form id = "editForm">
+	<h:form id="editForm">
 			更新する言葉を入力してください。<br />
 			好きな言葉：<h:inputText value="#{edit.inputData}" />
 		<br />
 		<h:outputText value="#{edit.errorMessage}"></h:outputText>
 		<br />
-		<input type="hidden" name="selectDataId" value="#{main.data.id}"  />
+		<input type="hidden" name="selectDataId" value="#{main.data.id}" />
 		<h:commandButton value="送信" action="#{edit.sendToIndexScreen()}" />
 	</h:form>
 

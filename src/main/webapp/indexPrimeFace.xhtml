@@ -5,6 +5,7 @@
 <h:head>
 </h:head>
 <h:body>
+	<h:outputText value="#{login.userName}"></h:outputText>
 	<h:form id="dtSelectableFrm">
 
 		<!-- valueにモデルを指定し、selectionで選択されたリストを指定します -->
@@ -36,8 +37,7 @@
 			</p:column>
 
 			<p:column id="colEdit" headerText="編集">
-				<h:commandButton value="編集"
-					action="#{main.sendToEditScreen()}" />
+				<h:commandButton value="編集" action="#{main.sendToEditScreen()}" />
 			</p:column>
 		</p:dataTable>
 
